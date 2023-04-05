@@ -1,0 +1,13 @@
+{%  extends "index.html" %}
+
+{% block contenido_cambia %}
+
+<h1 class="text-white font-weigh-bold">Esta es la página del Blog</h1>
+<h4 class="align left">
+<form method="POST" enctype="multipart/form-data">
+    {%  csrf_token %}
+        {{  form.as_p }}
+        <input type="submit" value="Publicar">
+</form>
+</h4>
+{% endblock %}

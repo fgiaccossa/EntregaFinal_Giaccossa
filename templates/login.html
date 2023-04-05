@@ -1,0 +1,12 @@
+{%  extends "index.html" %}
+
+{% block contenido_cambia %}
+<h2 class="text-white font-weight-bold">Login</h2>
+    <h4 class="text-white font-weight-bold left">
+    <form action="{% url "signin" %}" method="POST">
+        {%  csrf_token %}
+        {{  form.as_p }}
+    <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </h4>
+{% endblock %}

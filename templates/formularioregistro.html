@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block contenido_cambia %}
+
+<form action="{% url 'registro' %}" method="post">{% csrf_token %}</form>
+
+<h2 class="text-white font-weight-bold">Registro de usuarios</h2>
+{{ form.as_p }}
+
+{% if registro %}
+    {% for registro in registro %}
+    <p>nombre: {{registro.nombre}}</p>
+    <p>email: {{registro.email}}</p>
+    <p>user: {{registro.nombreusuario}}</p>
+    <p>password: {{registro.password}}</p>
+    <button type="button" class="btn btn-primary"><input type="submit" value="Registrarse"></button>
+
+
+{% endfor %}
+    {% else %}
+        <h1>No hay usuarios registrados aún</h1>
+    {% endif %}
+{% endblock %}

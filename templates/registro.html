@@ -1,0 +1,14 @@
+{%  extends "index.html" %}
+
+{% block contenido_cambia %}
+
+<h2 class="text-white font-weight-bold">Registrarse</h2>
+    <h6 class="text-white font-weight-bold align-left">
+        <form  method="POST">
+        {%  csrf_token %}
+        {{  form.as_p }}
+        <button type="button" class="btn btn-primary"><input type="submit" value="Enviar">
+        </form>
+    </h6>
+
+{% endblock %}

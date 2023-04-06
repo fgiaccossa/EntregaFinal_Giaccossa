@@ -1,8 +1,12 @@
 from django.urls import path
 import usuarios.views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('signin/', usuarios.views.login_usuario, name="signin"),
+    path('loginsuccess/', usuarios.views.loginsuccess, name="loginsuccess"),
     path('loginerror/', usuarios.views.loginerror, name="loginerror"),
-    path('signup/', usuarios.views.registro, name="signup")
+    path('signup/', usuarios.views.registro, name="signup"),
+    path('signupsuccess/', usuarios.views.signupsuccess, name='signupsuccess'),
+    path('logout/', LogoutView.as_view(template_name="logout.html"), name='logout')
 ]

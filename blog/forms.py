@@ -1,11 +1,11 @@
 from django import forms
 
-from blog.models import Articulo
+from blog.models import Articulo, Contacto
 
 
 class ArticuloForm(forms.Form):
     titulo = forms.CharField(max_length=50)
-    resumen= forms.CharField(max_length=150)
+    resumen = forms.CharField(widget=forms.Textarea, max_length=150)
     contenido = forms.CharField(widget=forms.Textarea)
     imagen = forms.ImageField()
     autor = forms.CharField(max_length=50)
@@ -22,7 +22,19 @@ class ArticuloForm(forms.Form):
         articulo.save()
         return articulo
 
+
 class ContactoForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     email = forms.EmailField()
-    mensaje = forms.Textarea()
+    mensaje = forms.CharField(widget=forms.Textarea)
+
+
+    def save(self):
+        information = self.cleaned_data
+        contacto = Contacto(
+            nombre=information["nombre"],
+            email=information["email"],
+            mensaje=information["mensaje"],
+        )
+        contacto.save()
+        return contacto

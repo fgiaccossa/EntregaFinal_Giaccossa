@@ -18,7 +18,7 @@ def login_usuario(request):
             if user is not None:
                 login(request, user)
 
-                return redirect("home")
+                return redirect("loginsuccess")
 
             else:
                 return redirect("loginerror")
@@ -28,6 +28,10 @@ def login_usuario(request):
         "form": form
     }
     return render(request, "login.html", context=context)
+
+
+def loginsuccess(request):
+    return render(request, 'loginsuccess.html')
 
 def loginerror(request):
     return render(request, 'loginerror.html')
@@ -39,7 +43,7 @@ def registro(request):
         if form.is_valid():
             form.save()
 
-            return redirect("home")
+            return render(request, "registrosuccess.html")
         else:
             return render(request, "loginerror.html")
     # form = UserCreationForm()
@@ -48,3 +52,6 @@ def registro(request):
         "form": form
     }
     return render(request, "registro.html", context=context)
+
+def signupsuccess(request):
+    return render(request, 'registrosuccess.html')

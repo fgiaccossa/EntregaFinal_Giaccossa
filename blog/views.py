@@ -5,7 +5,7 @@ from blog.forms import ArticuloForm, ContactoForm
 
 # Create your views here.
 
-def Inicio(request):
+def inicio(request):
     return render(request, 'index.html')
 
 
@@ -16,7 +16,7 @@ def articulo(request):
         if form.is_valid():
             form.save()
 
-            return redirect("blog")
+            return render(request, "blogsuccess.html")
         else:
             return render(request, "blogerror.html")
 
@@ -27,25 +27,32 @@ def articulo(request):
     }
     return render(request, 'blog.html', context=context)
 
+def blogsuccess(request):
+    return render(request, 'blogsuccess.html')
+def blogerror(request):
+    return render(request, 'blogerror.html')
 
-def Nosotros(request):
+def nosotros(request):
     return render(request, 'nosotros.html')
 
 
-def Contacto(request):
+def contacto(request):
     if request.method == "POST":
 
-        form = Contacto(request.POST)
+        form = ContactoForm(request.POST)
 
         if form.is_valid():
             form.save()
 
-            return redirect("blog")
+            return redirect("home")
         else:
             return render(request, "errorenvio.html")
-    form = Contacto()
+    form = ContactoForm()
 
     context = {
         "form": form
     }
     return render(request, 'contacto.html', context=context)
+
+def contactoerror(request):
+    return render(request, 'contactoerror.html')

@@ -4,10 +4,14 @@ import blog.views
 
 urlpatterns = [
 
-    path('', blog.views.Inicio, name="inicio"),
-    path('home/', blog.views.Inicio, name="home"),
+    path('', blog.views.inicio, name="inicio"),
+    path('home/', blog.views.inicio, name="home"),
     path('pages/', blog.views.articulo, name="blog"),
-    path('contacto/', blog.views.Contacto, name="contacto"),
-    path('about/', blog.views.Nosotros, name="nosotros"),
+    path('blogsuccess/', blog.views.blogsuccess, name="blogsuccess"),
+    path('blogerror/', blog.views.blogerror, name="blogerror"),
+    path('contacto/', blog.views.contacto, name="contacto"),
+    path('contactoerror/', blog.views.contactoerror, name="contactoerror"),
+    path('about/', blog.views.nosotros, name="nosotros"),
+
 
 ]

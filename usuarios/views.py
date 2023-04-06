@@ -15,6 +15,7 @@ def login_usuario(request):
             informacion = form.cleaned_data
 
             user = authenticate(username=informacion['username'], password=informacion['password'])
+
             if user is not None:
                 login(request, user)
 
@@ -45,7 +46,7 @@ def registro(request):
 
             return render(request, "registrosuccess.html")
         else:
-            return render(request, "loginerror.html")
+            return render(request, "registroerror.html")
     # form = UserCreationForm()
     form = UserRegisterForm()
     context = {
@@ -55,3 +56,6 @@ def registro(request):
 
 def signupsuccess(request):
     return render(request, 'registrosuccess.html')
+
+def signuperror(request):
+    return render(request, 'registroerror.html')

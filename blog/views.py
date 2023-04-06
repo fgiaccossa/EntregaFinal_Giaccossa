@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from blog.forms import ArticuloForm, ContactoForm
 
 
@@ -8,7 +8,9 @@ from blog.forms import ArticuloForm, ContactoForm
 def inicio(request):
     return render(request, 'index.html')
 
-
+def publicaciones(request):
+    return render (request, 'publicaciones.html')
+@login_required
 def articulo(request):
     if request.method == "POST":
         form = ArticuloForm(request.POST, request.FILES)
@@ -56,3 +58,10 @@ def contacto(request):
 
 def contactoerror(request):
     return render(request, 'contactoerror.html')
+
+def leerarticulo(request):
+    articulos = Articulo.objects.all()
+    contexto={"articulos":articulos}
+    return render(request, "leerpublicaciones.html", contexto)
+
+#def eliminararticulo

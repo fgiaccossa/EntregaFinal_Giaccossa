@@ -1,15 +1,16 @@
 {%  extends "index.html" %}
-
 {% block contenido_cambia %}
+
 <head>
     <meta charset="UTF-8">
     <title>Error de login</title>
 </head>
 <body>
 <div class="col-lg-8 align-self-baseline">
-    <h3 class="text-white font-weight-bold text-bg-danger">Error al enviar la publicación. Por favor inténtelo nuevamente.</h3>
-    <a class="btn btn-primary btn-lg" href="{% url 'blog' %}">Volver</a>
+<h3 class="text-white font-weight-bold text-bg-danger">Error en el envío del formulario. Por favor inténtelo nuevamente.</h3>
+<a class="btn btn-primary btn-lg" href="{% url 'signup' %}">Volver</a>
 <p>
 <br>
 </body>
+</html>
 {% endblock %}

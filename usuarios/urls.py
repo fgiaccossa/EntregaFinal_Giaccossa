@@ -8,5 +8,6 @@ urlpatterns = [
     path('loginerror/', usuarios.views.loginerror, name="loginerror"),
     path('signup/', usuarios.views.registro, name="signup"),
     path('signupsuccess/', usuarios.views.signupsuccess, name='signupsuccess'),
+    path('signuperror/', usuarios.views.signuperror, name='signuperror'),
     path('logout/', LogoutView.as_view(template_name="logout.html"), name='logout')
 ]

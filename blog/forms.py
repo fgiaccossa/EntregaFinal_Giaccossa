@@ -1,7 +1,7 @@
 from django import forms
-
+from django.contrib.auth.models import User
 from blog.models import Articulo, Contacto
-
+import os
 
 class ArticuloForm(forms.Form):
     titulo = forms.CharField(max_length=50)
@@ -18,7 +18,7 @@ class ArticuloForm(forms.Form):
             resumen=information["resumen"],
             contenido=information["contenido"],
             imagen=information["imagen"],
-            autor=information["autor"],
+            autor=information["autor"]
         )
         articulo.save()
         return articulo

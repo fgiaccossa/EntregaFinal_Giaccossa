@@ -63,12 +63,35 @@ def contacto(request):
 def contactoerror(request):
     return render(request, 'contactoerror.html')
 
-def eliminararticulo(request, articulo):
-    articulos = Articulo.objects.all()
-    contexto={"articulos":articulos}
-    return render(request, "publicaciones.html", contexto)
+@login_required
+def eliminararticulo(request, pk):
+    articulo = Articulo.objects.get(id=pk)
+    articulo.delete()
+    return render(request, "eliminararticulo.html")
 
 def leerarticulo(request, pk):
     articulo = Articulo.objects.get(id=pk)
     contexto={'articulo':articulo}
     return render(request, 'articulo.html', contexto)
+
+def editararticulo(request, pk):
+    get_articulo = Articulo.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = ArticuloForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+
+            return render(request, "blogsuccess.html")
+        else:
+            return render(request, "blogerror.html")
+
+    #form = ArticuloForm()
+    get_articulo = Articulo.objects.get(id=pk)
+
+    context = {
+        "form": ArticuloForm(initial={"titulo":get_articulo.titulo, "resumen":get_articulo.resumen, "contenido":get_articulo.contenido, "imagen":get_articulo.imagen, "autor":get_articulo.autor})
+
+    }
+    return render(request, 'blog.html', context=context)

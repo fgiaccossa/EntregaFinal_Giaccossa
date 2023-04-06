@@ -47,24 +47,35 @@
             <div class="col-lg-8 align-self-center">
                 <h1 class="text-white font-weight-bold text-center">Publicaciones actuales</h1>
                 <a class="btn btn-primary btn-lg" href="{% url 'blog' %}">CREAR NUEVA PUBLICACION</a>
-                <hr class="divider"/>
+                <br>
+                <br>
             </div>
-        </div>
+        <br>
+        <br>
+        <section>
+            <h6 class="text-white font-weight-bold text-center">
+                {% for a in articulos %}
+                    <li>
+                        Título: {{ a.titulo }}
+                        <br>
+                        Resumen: {{ a.resumen }}
+                        <br>
+                        <img src="{{ a.imagen }}">
+                        <br>
+                        Autor: {{ a.autor }}
+                        <br>
+                        <a class="btn btn-primary btn-sm" href="{% url 'leerarticulo' a.id %}">Leer</a>
+                        <br>
+                        <br>
+                    </li>
+                {% endfor %}
+            </h6>
+        </section>
+        <hr class="divider"/>
     </div>
-    <section>
-        {% for elemento in Articulo %}
-            <li>
-            <h3>{{ elemento.titulo }}</h3>
-            <p>
-                {{ elemento.resumen }}
-            </p>
-            <img src="{{ elemento.imagen }}">
-            <footer>
-                Autor: {{ elemento.autor }}
-            </footer>
-            </li>
-        {% endfor %}
-    </section>
+    </div>
+    </div>
+
 </header>
 </body>
 </html>

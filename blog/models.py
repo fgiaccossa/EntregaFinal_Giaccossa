@@ -9,9 +9,12 @@ class Articulo (models.Model, LoginRequiredMixin):
     contenido=models.TextField()
     imagen=models.ImageField()
     autor=models.CharField(max_length=50)
+    #autor=models.CharField(User, PrimaryKey=True)
+    #fecha=models.DateTimeField(auto_created=True)
+
 
     def __str__(self):
-        return f"Título: {self.titulo}, Autor: {self.autor}"
+        return f"Título: {self.titulo}, Resumen: {self.resumen}, Contenido: {self.contenido}, Imagen: {self.imagen}, Autor: {self.autor}"
 
 
 class Contacto (models.Model):

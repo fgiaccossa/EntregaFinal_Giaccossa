@@ -9,6 +9,7 @@ class ArticuloForm(forms.Form):
     contenido = forms.CharField(widget=forms.Textarea)
     imagen = forms.ImageField()
     autor = forms.CharField(max_length=50)
+    #fecha = forms.DateTimeField()
 
     def save(self):
         information = self.cleaned_data

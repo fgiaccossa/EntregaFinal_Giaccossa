@@ -1,8 +1,10 @@
 import os
-
+import getpass
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 class Articulo (models.Model, LoginRequiredMixin):
@@ -10,11 +12,7 @@ class Articulo (models.Model, LoginRequiredMixin):
     resumen=models.TextField(max_length=150)
     contenido=models.TextField()
     imagen=models.ImageField()
-    autor=models.CharField(max_length=50)
-    #autor=os.getlogin()
-    #autor=models.CharField(User, PrimaryKey=True)
-    #fecha=models.DateTimeField(auto_created=True)
-
+    autor = models.CharField(max_length=50)
 
     def __str__(self):
         return f"Título: {self.titulo}, Resumen: {self.resumen}, Contenido: {self.contenido}, Imagen: {self.imagen}, Autor: {self.autor}"

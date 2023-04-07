@@ -1,1 +1,16 @@
-{{ articulo }}
+{%  extends "index.html" %}
+
+{% block contenido_cambia %}
+<head>
+    <meta charset="UTF-8">
+    <title>Leer publicación</title>
+</head>
+<body>
+<div class="col-lg-8 align-self-baseline">
+    <h6 class="text-white">{{ articulo }}.</h6>
+    <a class="btn btn-primary btn-lg" href="{% url 'publicaciones' %}">Volver</a>
+<p>
+<br>
+</body>
+{% endblock %}
+

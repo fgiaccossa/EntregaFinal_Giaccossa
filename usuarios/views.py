@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from usuarios.forms import UserRegisterForm
@@ -59,3 +59,40 @@ def signupsuccess(request):
 
 def signuperror(request):
     return render(request, 'registroerror.html')
+
+def editarusuario(request):
+
+    user = request.user
+
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            informacion = form.cleaned_data
+
+            user.username = informacion["username"]
+            user.email = informacion["email"]
+            user.is_staff = informacion["is_staff"]
+
+            try:
+                user.avatar.imagen = informacion["imagen"]
+            except:
+                avatar = Avatar(user=user, imagen=informacion["imagen"])
+                avatar.save()
+
+            user.save()
+            return redirect("signin")
+
+    form = UserRegisterForm(initial={
+        "username": user.username,
+        "email": user.email,
+        "is_staff": user.is_staff
+    })
+
+    context = {
+        "form": form,
+        "titulo": "Editar usuario",
+        "enviar": "Editar"
+    }
+
+    return render(request, "registro.html", context=context)

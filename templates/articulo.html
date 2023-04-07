@@ -7,7 +7,11 @@
 </head>
 <body>
 <div class="col-lg-8 align-self-baseline">
-    <h6 class="text-white">{{ articulo }}.</h6>
+    <h3 class="text-white">{{ articulo.titulo }}.</h3><br>
+    <h6 class="text-white">{{ articulo.resumen }}</h6><br>
+    <h6 class="text-white">{{ articulo.contenido }}</h6><br>
+    <h6 class="text-white"> <img src="/media/{{ articulo.imagen }}"></h6><br>
+     <h6 class="text-white">{{ articulo.autor }}</h6><br>
     <a class="btn btn-primary btn-lg" href="{% url 'publicaciones' %}">Volver</a>
 <p>
 <br>

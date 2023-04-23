@@ -28,7 +28,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'publicaciones' %}">Publicaciones</a></li>
+                        <li class="nav-item text-bg-info"><a class="nav-link" href="{%  url 'publicaciones' %}">Publicaciones</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item text-bg-info"><a class="nav-link" href="{%  url 'conversaciones' %}">Mensajería</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{%  url 'contacto' %}">Contacto</a></li>
                         {% if not request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Registrarse</a></li>
@@ -36,6 +39,7 @@
                         {% endif %}
                         {% if request.user.is_authenticated %}
                         <p class="text-muted small mb-4 mb-lg-0" type="text/css">Bienvenido, {{ user.username }}!</p>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Salir</a></li>
                         {% endif %}
                     </ul>

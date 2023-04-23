@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block contenido_cambia %}
+    <h2 class="text-white font-weigh-bold">Conversación</h2>
+    <h6 class="text-white font-weigh-bold">Asunto: {{ conversacion }}</h6>
+    {% for mensaje in mensajes %}
+        <h6 class="text-white font-weigh-bold">De:{{ mensaje.autor }}</h6>
+        <h6 class="text-white">Creado el:{{ mensaje.fecha_creacion }}</h6>
+        <h6 class="text-white font-weigh-bold">Mensaje:</h6>
+        <br>
+        <h6 class="text-white font-weigh-bold">{{ mensaje.texto }}</h6>
+    {% empty %}
+        <h2 class="text-white font-weight-bold">No hay mensajes en esta conversación.</h2>
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <br>
+        <br>
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <h6 class="text-bg-warning font-weigh-bold">Escriba su respuesta aquí:</h6>
+        <textarea name="texto"></textarea>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+{% endblock %}

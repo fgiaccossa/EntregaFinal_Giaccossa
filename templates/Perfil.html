@@ -43,7 +43,6 @@
                 {% if request.user.is_authenticated %}
                     <p class="text-muted small mb-4 mb-lg-0" type="text/css">Bienvenido, {{ user.username }}!</p>
                     <li class="nav-item"><a class="nav-link" href="{%  url 'conversaciones' %}">Mensajería</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{%  url 'perfil' %}">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Salir</a></li>
                 {% endif %}
             </ul>
@@ -55,30 +54,11 @@
     <div class="container px-4 px-lg-5 h-100">
         <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
             <div class="col-lg-8 align-self-center">
-                <h1 class="text-white font-weight-bold text-center">Publicaciones actuales</h1>
-                <a class="btn btn-primary btn-lg" href="{% url 'blog' %}">CREAR NUEVA PUBLICACION</a>
+                <h1 class="text-white font-weight-bold text-center">Hola {{ user.username }}! Aquí podrás administrar tu perfil de usuario! </h1>
+                <a class="btn btn-primary btn-lg" href="{% url 'editarusuario' %}">MODIFICAR TUS DATOS</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'eliminarusuario' %}">ELIMINAR CUENTA</a>
                 <br>
                 <br>
-                <div class="card row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center" style="width: 18rem;">
-                    {% for a in articulos %}
-                        <img src="/media/{{ a.imagen }}" alt="imagenn del blog" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Título: {{ a.titulo }}</h5>
-                            <p class="card-text">Resumen: {{ a.resumen }}</p>
-                            <a class="btn btn-primary btn-sm" href="{% url 'leerarticulo' a.id %}">Leer</a>
-                            {% if request.user.is_authenticated %}
-                                <a class="btn btn-primary btn-sm" href="{% url 'eliminarticulo' a.id %}">Eliminar</a>
-                                <a class="btn btn-primary btn-sm" href="{% url 'editararticulo' a.id %}">Editar</a>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <hr class="divider"/>
     </div>
     </div>
     </div>

@@ -2,12 +2,12 @@
 
 {% block contenido_cambia %}
 
-<h2 class="text-white font-weigh-bold">Esta es la página del Blog</h2><p>
+<h2 class="text-white font-weigh-bold">Crear nueva conversacion</h2><p>
 <h6 class="text-white">
 <form method="POST" enctype="multipart/form-data">
     {%  csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Publicar</button>
+        <button type="submit" class="btn btn-primary">Crear mensaje</button>
 </form>
 </h6>
 {% endblock %}

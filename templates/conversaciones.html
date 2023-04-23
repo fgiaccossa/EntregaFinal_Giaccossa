@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block contenido_cambia %}
+    <div class="col-lg-8 align-self-center">
+        <h2 class="text-white font-weigh-bold">Conversaciones</h2>
+        {% if conversaciones %}
+            <div class="card row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
+                 style="width: 18rem;">
+                {% for conversacion in conversaciones %}
+                    <div class="card-body">
+                    <h5 class="card-title">Asunto: {{ conversacion.asunto }}</h5>
+                    <a class="btn btn-primary btn-sm" href="{% url 'ver_conversacion' conversacion_id=conversacion.id %}">Leer mensajes</a>
+                    <a class="btn btn-primary btn-sm" href="{% url 'eliminarconversacion' conversacion_id=conversacion.id %}">Eliminar</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-white">No hay conversaciones disponibles.</p>
+        {% endif %}
+
+    <a class="btn btn-primary btn-lg" href="{% url 'nuevaconversacion' %}">Nueva conversación</a>
+    </div>
+    <br>
+{% endblock %}

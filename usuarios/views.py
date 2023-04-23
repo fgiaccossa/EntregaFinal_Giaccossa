@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user
 from usuarios.forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -65,7 +65,7 @@ def editarusuario(request):
     user = request.user
 
     if request.method == "POST":
-        form = UserRegisterForm(request.POST, request.FILES)
+        form = UserRegisterForm(request.POST, request.FILES, instance=request.user)
 
         if form.is_valid():
             informacion = form.cleaned_data
@@ -74,14 +74,16 @@ def editarusuario(request):
             user.email = informacion["email"]
             user.is_staff = informacion["is_staff"]
 
-            try:
-                user.avatar.imagen = informacion["imagen"]
-            except:
-                avatar = Avatar(user=user, imagen=informacion["imagen"])
-                avatar.save()
+            #try:
+            #    user.avatar.imagen = informacion["imagen"]
+            #except:
+            #    avatar = Avatar(user=user, imagen=informacion["imagen"])
+            #    avatar.save()
 
             user.save()
-            return redirect("signin")
+            return render(request, "edicionsuccess.html")
+        else:
+            return render(request, "contactoerror.html")
 
     form = UserRegisterForm(initial={
         "username": user.username,
@@ -91,8 +93,16 @@ def editarusuario(request):
 
     context = {
         "form": form,
-        "titulo": "Editar usuario",
-        "enviar": "Editar"
     }
 
     return render(request, "registro.html", context=context)
+
+@login_required
+def eliminarusuario(request):
+    user = request.user
+    user.delete()
+    return render(request, "eliminarusuario.html")
+
+@login_required
+def perfil(request):
+    return render(request, "perfil.html")

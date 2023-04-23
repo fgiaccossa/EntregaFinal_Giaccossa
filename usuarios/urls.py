@@ -11,6 +11,7 @@ urlpatterns = [
     path('signupsuccess/', usuarios.views.signupsuccess, name='signupsuccess'),
     path('signuperror/', usuarios.views.signuperror, name='signuperror'),
     path('logout/', LogoutView.as_view(template_name="logout.html"), name='logout'),
+    path('perfil/', usuarios.views.perfil, name='perfil'),
     path('editarusuario/', usuarios.views.editarusuario, name='editarusuario'),
-
+    path('eliminarusuario/', usuarios.views.eliminarusuario, name='eliminarusuario'),
 ]
